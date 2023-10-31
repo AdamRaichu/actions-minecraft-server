@@ -1,13 +1,16 @@
 on:
   issues:
-    types: opened
+    types: [opened, edited]
+  workflow_dispatch: 
 jobs:
   run_server:
     env:
       PLAYIT_SECRET: ${{ secrets.PLAYIT_SECRET }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        name: clone repo locally
       - run: |
           chmod u+x ./run.sh
           ./run.sh
-        name: Install playit and check tunnel status
+        name: Run the server
