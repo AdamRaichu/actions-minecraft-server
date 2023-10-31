@@ -1,1 +1,0 @@
-playit --secret $PLAYIT_SECRET tunnels list > playit-status.txt
