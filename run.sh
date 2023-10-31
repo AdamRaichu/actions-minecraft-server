@@ -9,5 +9,5 @@ java -Xmx6G -jar fabric-server-mc.1.20.2-loader.0.14.24-launcher.0.11.2.jar nogu
 
 node ./modify-eula.js
 
-playit --secret $PLAYIT_SECRET this-donations.gl.joinmc.link &
-java -Xmx6G -jar fabric-server-mc.1.20.2-loader.0.14.24-launcher.0.11.2.jar nogui
+playit --secret $PLAYIT_SECRET run &
+printf 'op AdamRaichu' | java -Xmx6G -jar fabric-server-mc.1.20.2-loader.0.14.24-launcher.0.11.2.jar nogui
