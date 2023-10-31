@@ -23,7 +23,7 @@ jobs:
           java-version: 17
           distribution: "microsoft"
       - name: Check eula
-        if: !(fromJson(github.event.issue.body)['REQ Do you agree to the Minecraft eula'])
+        if: ${{ !(fromJson(github.event.issue.body)['REQ Do you agree to the Minecraft eula']) }}
         run: |
           echo You must agree to the Minecraft eula.
           echo Edit your issue to reflect that please.
