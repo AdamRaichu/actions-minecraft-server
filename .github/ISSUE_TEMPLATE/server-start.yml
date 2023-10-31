@@ -1,0 +1,10 @@
+---
+name: Start a Server
+title: Server Start Request
+labels: "*start"
+---
+{
+  "$COMMENT": "Please go over each of these fields",
+  "$COMMENT2": "Those marked $REQ are required",
+  "$REQ Do you agree to the Minecraft eula": false
+}
