@@ -27,5 +27,5 @@ jobs:
           echo ${{ steps.ip.outputs.ipv6 }}
       - name: Install remote.it
         run: |
-          curl https://downloads.remote.it/cli/v3.0.37/remoteit.x86-win.exe --output C:/Program Files/remoteit.exe
+          curl https://downloads.remote.it/cli/v3.0.37/remoteit.x86-win.exe --output %programfiles%/remoteit.exe
           remoteit agent install
