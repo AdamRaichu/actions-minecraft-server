@@ -5,8 +5,6 @@ concurrency:
   cancel-in-progress: false
 jobs:
   run_server:
-    env:
-      PLAYIT_SECRET: ${{ secrets.PLAYIT_SECRET }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +18,16 @@ jobs:
         with:
           java-version: 17
           distribution: "microsoft"
-      - run: |
+      - name: Public IP
+        id: ip
+        uses: haythem/public-ip@v1.3
+      - name: Print Public IP
+        run: |
+          echo ${{ steps.ip.outputs.ipv4 }}
+          echo ${{ steps.ip.outputs.ipv6 }}
+      - name: Install localtunnel
+        run: npm i -g localtunnel
+      - name: Start Server
+        run: |
           chmod u+x ./run.sh
           ./run.sh
-        name: Run the server
