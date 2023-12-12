@@ -1,11 +1,11 @@
 on:
-  workflow_dispatch: 
-concurrency: 
+  workflow_dispatch:
+concurrency:
   group: server-run
   cancel-in-progress: false
 jobs:
   run_server:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
         name: clone repo locally
@@ -25,9 +25,7 @@ jobs:
         run: |
           echo ${{ steps.ip.outputs.ipv4 }}
           echo ${{ steps.ip.outputs.ipv6 }}
-      - name: Install localtunnel
-        run: npm i -g localtunnel
-      - name: Start Server
+      - name: Install remote.it
         run: |
-          chmod u+x ./run.sh
-          ./run.sh
+          curl https://downloads.remote.it/cli/v3.0.37/remoteit.x86-win.exe --output C:/Program Files/remoteit.exe
+          remoteit agent install
