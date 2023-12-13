@@ -18,14 +18,7 @@ jobs:
         with:
           java-version: 17
           distribution: "microsoft"
-      - name: Public IP
-        id: ip
-        uses: haythem/public-ip@v1.3
-      - name: Print Public IP
-        run: |
-          echo ${{ steps.ip.outputs.ipv4 }}
-          echo ${{ steps.ip.outputs.ipv6 }}
       - name: Install remote.it
-        run: |
-          curl https://downloads.remote.it/cli/v3.0.37/remoteit.x86-win.exe --output %programfiles%/remoteit.exe
-          remoteit agent install
+        run: ${{ secrets.REMOTEIT_COMMAND }}
+      - name: Run Server (Long)
+        run: ./run.sh
