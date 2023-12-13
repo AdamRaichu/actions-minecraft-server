@@ -5,7 +5,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   run_server:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         name: clone repo locally
@@ -19,6 +19,6 @@ jobs:
           java-version: 17
           distribution: "microsoft"
       - name: Install remote.it
-        run: ${{ secrets.REMOTEIT_COMMAND }}
+        run: R3_REGISTRATION_CODE="${{ secrets.REMOTEIT_CODE }}" sh -c "$(curl -L https://downloads.remote.it/remoteit/install_agent.sh)"
       - name: Run Server (Long)
         run: ./run.sh
