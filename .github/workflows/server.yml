@@ -1,10 +1,20 @@
 on:
   workflow_dispatch:
+    inputs:
+      should_add_op:
+        type: boolean
+        default: false
+        description: Whether to apply the value of op_name input.
+        required: true
+      op_name:
+        type: string
+        required: false
+        description: The Minecraft username of a player to make an operator.
 concurrency:
   group: server-run
   cancel-in-progress: false
 jobs:
-  run_server:
+  run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,4 +31,17 @@ jobs:
       - name: Install remote.it
         run: R3_REGISTRATION_CODE="${{ secrets.REMOTEIT_CODE }}" sh -c "$(curl -L https://downloads.remote.it/remoteit/install_agent.sh)"
       - name: Run Server (Long)
-        run: ./run.sh
+        id: run_server
+        run: ${{inputs.should_add_op && 'printf "op ' || ''}}${{inputs.should_add_op && inputs.op_name || ''}}${{inputs.should_add_op && '" | ' || ''}}java -Xmx6G -jar fabric-server-mc.1.20.2-loader.0.14.24-launcher.0.11.2.jar nogui
+        # Maximum workflow duration is 360 minutes.
+        # Setting this prevents progress from being lost by forgetting to stop the server.
+        timeout-minutes: 320
+        continue-on-error: true
+      - name: Save to GitHub
+        run: |
+          git pull
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add .
+          git commit -m "$(cat commit-message.txt)" -m "active duration: "
+          git push

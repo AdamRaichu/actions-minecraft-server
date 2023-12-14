@@ -1,0 +1,35 @@
+on:
+  workflow_dispatch:
+    inputs:
+      eula_agree:
+        type: boolean
+        required: true
+        description: Do you agree to the Minecraft EULA? https://www.minecraft.net/en-us/eula
+      motd:
+        type: string
+        description: The MOTD to set in server.properties.
+        default: A Minecraft server running in \u00a79\u00a7lGitHub Actions\u00a7r\nSee \u00a76AdamRaichu\/actions-minecraft-server
+permissions:
+  contents: write
+jobs:
+  setup_server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        name: clone repo locally
+      - name: import Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: setup jdk 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: "microsoft"
+      - name: Generate Server Files
+        run: java -Xmx7G -jar fabric-server-mc.1.20.4-loader.0.15.1-launcher.0.11.2.jar nogui
+      - name: Edit eula.txt
+        if: inputs.eula_agree
+        run: node ./scripts/modify-eula.js
+      - name: Change MOTD
+        run: node ./scripts/modify-motd.js ${{ inputs.motd }}
