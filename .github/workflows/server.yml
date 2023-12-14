@@ -32,7 +32,7 @@ jobs:
         run: R3_REGISTRATION_CODE="${{ secrets.REMOTEIT_CODE }}" sh -c "$(curl -L https://downloads.remote.it/remoteit/install_agent.sh)"
       - name: Run Server (Long)
         id: run_server
-        run: ${{inputs.should_add_op && 'printf "op ' || ''}}${{inputs.should_add_op && inputs.op_name || ''}}${{inputs.should_add_op && '" | ' || ''}}java -Xmx6G -jar fabric-server-mc.1.20.2-loader.0.14.24-launcher.0.11.2.jar nogui
+        run: ${{inputs.should_add_op && 'printf "op ' || ''}}${{inputs.should_add_op && inputs.op_name || ''}}${{inputs.should_add_op && '" | ' || ''}}java -Xmx6G -jar fabric-server-mc.1.20.4-loader.0.15.1-launcher.0.11.2.jar nogui
         # Maximum workflow duration is 360 minutes.
         # Setting this prevents progress from being lost by forgetting to stop the server.
         timeout-minutes: 320
