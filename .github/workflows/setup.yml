@@ -1,3 +1,4 @@
+name: Setup Server
 on:
   workflow_dispatch:
     inputs:
@@ -33,3 +34,11 @@ jobs:
         run: node ./scripts/modify-eula.js
       - name: Change MOTD
         run: node ./scripts/modify-motd.js ${{ inputs.motd }}
+      - name: Save to GitHub
+        run: |
+          git pull
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add .
+          git commit -m "Generate server files"
+          git push
