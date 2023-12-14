@@ -1,0 +1,29 @@
+[22:10:48] [main/INFO]: Loading Minecraft 1.20.4 with Fabric Loader 0.15.1
+[22:10:48] [main/INFO]: Fabric is preparing JARs on first launch, this may take a few seconds...
+[22:10:48] [main/INFO]: Loading 4 mods:
+	- fabricloader 0.15.1
+	   \-- mixinextras 0.3.1
+	- java 17
+	- minecraft 1.20.4
+[22:10:48] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=file:/home/runner/work/actions-minecraft-server/actions-minecraft-server/libraries/net/fabricmc/sponge-mixin/0.12.5+mixin.0.8.5/sponge-mixin-0.12.5+mixin.0.8.5.jar Service=Knot/Fabric Env=SERVER
+[22:10:53] [main/ERROR]: Failed to load properties from file: server.properties
+java.nio.file.NoSuchFileException: server.properties
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:92) ~[?:?]
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106) ~[?:?]
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111) ~[?:?]
+	at sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:218) ~[?:?]
+	at java.nio.file.Files.newByteChannel(Files.java:380) ~[?:?]
+	at java.nio.file.Files.newByteChannel(Files.java:432) ~[?:?]
+	at java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:422) ~[?:?]
+	at java.nio.file.Files.newInputStream(Files.java:160) ~[?:?]
+	at net.minecraft.class_3808.method_16727(class_3808.java:62) ~[server-intermediary.jar:?]
+	at net.minecraft.class_3806.method_16714(class_3806.java:138) ~[server-intermediary.jar:?]
+	at net.minecraft.class_3807.<init>(class_3807.java:12) ~[server-intermediary.jar:?]
+	at net.minecraft.server.Main.main(Main.java:112) ~[server-intermediary.jar:?]
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:470) ~[fabric-loader-0.15.1.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74) ~[fabric-loader-0.15.1.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotServer.main(KnotServer.java:23) ~[fabric-loader-0.15.1.jar:?]
+	at net.fabricmc.loader.impl.launch.server.FabricServerLauncher.main(FabricServerLauncher.java:69) ~[fabric-loader-0.15.1.jar:?]
+	at net.fabricmc.installer.ServerLauncher.main(ServerLauncher.java:69) ~[fabric-server-mc.1.20.4-loader.0.15.1-launcher.0.11.2.jar:0.11.2]
+[22:10:53] [main/WARN]: Failed to load eula.txt
+[22:10:53] [main/INFO]: You need to agree to the EULA in order to run the server. Go to eula.txt for more info.
