@@ -1,3 +1,4 @@
+name: Server Run
 on:
   workflow_dispatch:
     inputs:
