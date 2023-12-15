@@ -33,7 +33,7 @@ jobs:
         if: inputs.eula_agree
         run: node ./scripts/modify-eula.js
       - name: Change MOTD
-        run: node ./scripts/modify-motd.js ${{ inputs.motd }}
+        run: node ./scripts/modify-motd.js "${{ inputs.motd }}"
       - name: Save to GitHub
         run: |
           git pull
